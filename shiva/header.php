@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<title>Welcome to Venus County</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Welcome to Venus County - jigani</title>
-        <meta name="description" content="This is Shiva reddy from Aashrithaa Properties..Here I am sending Venus County Phase 2,3,&4 MAPS  BMRDA Approved residential project details as below and attached layout plan and others. Venus County :- (Towards Bangalore South): This project is situated at Jigani(APC circle) to Anekal main road before Haragadde busstop.  Close to Electronic City..">
+		 <meta name="keywords" content="venus county, Aashrithaa Properties Venus County Jigani, Bangalore">
+        <meta name="description" content="I'm Shiva Reddy from Aashrithaa Properties..Here I am sending Venus County Phase 2,3,&4 MAPS  BMRDA Approved residential project details as below and attached layout plan and others. Venus County :- (Towards Bangalore South): This project is situated at Jigani(APC circle) to Anekal main road before Haragadde busstop.  Close to Electronic City..">
 <link href="css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.nivo.slider.js"></script>
