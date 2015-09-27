@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = '';
-
+define('site_title','Body and Soul Yoga');
 /*
 |--------------------------------------------------------------------------
 | Index File

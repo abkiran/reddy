@@ -79,7 +79,6 @@ class CI_Controller {
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
 	}
-
 	// --------------------------------------------------------------------
 
 	/**
@@ -92,5 +91,6 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
+
 
 }

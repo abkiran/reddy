@@ -51,6 +51,306 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
+if ( ! function_exists('get_arg'))
+{
+	function get_arg($ARR,$var) {
+		if (isset($ARR[$var])) { 
+			return $ARR[$var]; 
+		} else {
+			return "";
+		}
+	}
+}
+
+function LOG_ARR($level='INFO',$arr_name, $arr) {
+	LOG_MSG($level,"\n############ARRAY:$arr_name############\n".print_r($arr,true));
+}
+
+function LOG_MSG($level,$msg)
+{
+	global $MOD;
+
+	if (defined('CLI_MODE') && CLI_MODE == 'true') return;
+	// LOGGED IN
+	if ( isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === 1 ) {
+		$id="<".get_ip().":[".$_SESSION['user_id']."]".$_SESSION['email_id'].">";
+	// NOT LOGGED IN
+	} else {
+		$id="<".get_ip().":GUEST>";
+	}
+
+	// If we are processing a module, then log it in as well
+	if ($MOD) {
+		$msg="[$MOD] $msg";
+	}
+
+	$message=date("h:i:sa:")." ".$id.": ".$msg."\n";
+
+	$log_message=true;
+	switch ($level) {
+		case 'ERROR':
+				$st=_debug_string_backtrace();
+				$message.="=================================STACK TRACE======================================\n".$message."=====================================================================================\n";
+				break;
+		case 'FATAL':
+				$message.="=================================FATAL ERROR======================================\n".$message."=====================================================================================\n";
+				break;
+		case 'DEBUG':
+				$log_message=false;
+				break;
+	}
+
+	if ( $log_message ) {
+		$fd = fopen(LOG_FILE, "a");
+		fwrite($fd, $message);
+		fclose($fd);
+	}
+}
+
+
+
+/**********************************************************************/
+/*                          SEND SMS                                  */
+/**********************************************************************/
+function send_sms($from, $to, $message) {
+
+	LOG_MSG('INFO',"send_sms(): START to=[$to]");
+
+	// Retrieve SMS Gateway Details
+	$smsgateway_resp=db_smsgateway_select();
+	if ( $smsgateway_resp[0]['STATUS'] != 'OK' ) {
+		LOG_MSG('ERROR',"send_sms(): Error loading sms gateway");
+	}
+
+	// Send SMS only if Gateway is found
+	if ( $smsgateway_resp[0]['NROWS'] == 1 && $smsgateway_resp[0]['remaining_credits'] > 0 ) {
+		$plain_message=$message;
+		$smsgateway_id=$smsgateway_resp[0]['smsgateway_id'];
+
+		$status='FAILED';
+		$username=$smsgateway_resp[0]['username'];
+		$password=$smsgateway_resp[0]['password'];
+		$api_key=$smsgateway_resp[0]['api_key'];
+		$default_sender_id=$smsgateway_resp[0]['default_sender_id'];
+		$to=urlencode($to);
+		$message=urlencode($message);
+		$gateway_url=$smsgateway_resp[0]['gateway_url'];
+		$remaining_credits=$smsgateway_resp[0]['remaining_credits']-1;
+
+		// Generate the URL base on the provider
+		if ( $smsgateway_resp[0]['name'] == 'SolutionsInfini' ) {
+			// http://alerts.sinfini.com/api/web2sms.php?workingkey=##API_KEY##&sender=##DEFAULT_SENDER_ID##&to=##MOBILE_TO##&message=##MESSAGE##
+			$search=array('##API_KEY##', '##DEFAULT_SENDER_ID##', '##MOBILE_TO##', '##MESSAGE##');
+			$replace=array($api_key, $default_sender_id, $to, $message);
+			$url=str_replace($search,$replace,$gateway_url);
+		} elseif ( $smsgateway_resp[0]['name'] == 'SMSGupshup' ) {
+		// http://enterprise.smsgupshup.com/GatewayAPI/rest?method=SendMessage&send_to=##MOBILE_TO##
+			// &msg=##MESSAGE##&msg_type=TEXT&userid=##USERNAME##&auth_scheme=plain&password=##PASSWORD##&v=1.1&format=text			$search=array('##USERNAME##', '##PASSWORD##', '##MOBILE_TO##', '##MESSAGE##');
+			$replace=array($username, $password, $to, $message);
+			$url=str_replace($search,$replace,$gateway_url);
+		}
+
+		// Send SMS
+		$ch=curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response=curl_exec($ch);
+		curl_close($ch);     
+		if ( strpos($response,'GID') ) $status='SUCCESS';
+		LOG_MSG('INFO',"send_sms(): $response");
+
+                // Update the credits of the sms
+                $resp=db_lib_smsgateway_update($smsgateway_id,$remaining_credits);
+                if ( $resp['STATUS'] != 'OK' ) {
+                        LOG_MSG('ERROR',"send_sms(): Error while updating the SMSGateway table");
+                }
+
+
+		// Add SMS Sent Details
+		$smssent_resp=db_smssent_insert(
+							$smsgateway_id,
+							$default_sender_id,
+							$to,
+							$plain_message,
+							$url,
+							$response,
+							$status);
+		if ( $smssent_resp['STATUS'] != 'OK' ) {
+			LOG_MSG('ERROR',"send_sms(): Error while inserting in SMSSent talble from=[$from] to=[$to]");
+		}
+	}
+	LOG_MSG('INFO',"send_sms(): END");
+	return true;
+}
+
+
+
+/**********************************************************************/
+/*                          SEND EMAIL                                */
+/**********************************************************************/
+function send_email($to,$from,$cc='',$bcc='',$subject,$message) {
+
+	LOG_MSG('INFO',"send_email(): START EMAILER_HOST=[".EMAILER_HOST."] to=[$to] from=[$from] cc=[$cc] bcc=[$bcc] subject=[$subject]");
+
+	// Defaults
+	if (!$bcc) $bcc=EMAIL_BCC;
+
+	// Add footer to the message
+	ob_start();
+	include(HTML_DIR.'/emails/email_footer.html');
+	$message.=ob_get_contents();
+	ob_get_clean();
+
+	$headers ="Content-Type: text/html\r\n";
+	//."MIME-Version: 1.0\r\n"
+	//."charset=utf-8\r\n"
+	//."Content-Transfer-Encoding: 8bit\r\n"
+	//."X-Mailer: Shopnix - eCommerce Solution\r\n";
+
+
+	// To store subject whithout appending with SHOP_NAME
+	$plain_subject=$subject;
+	$subject  = "[".SHOP_NAME."] $subject";
+
+	// Setup parameters
+	$status='SUCCESS';
+	if (EMAILER_HOST == 'LOCAL' ) {
+		$emailer_host=$_SERVER['SERVER_NAME'];
+		$headers .= "From: $from\r\n";
+		$headers .= "CC: $cc\r\n";   
+		$headers .= "Bcc: $bcc\r\n";
+		$resp=mail($to, $subject, $message, $headers); // SEND EMAIL
+		if ( $resp ) $status='SUCCESS';
+		else $status='FAILED';
+	} elseif (EMAILER_HOST == 'REMOTE' ) {
+		$headers	.="From:$from \nCC: $cc \nBcc: $bcc";
+		$from		= urlencode($from);
+		$to			= urlencode($to);
+		$cc			= urlencode($cc);
+		$bcc		= urlencode($bcc);
+		$subject	= urlencode($subject);
+		$url		="";
+		$resp=curl_post($url,$message);	// SEND EMAIL
+		$emailer_host='cloudnix.com';
+	} elseif (EMAILER_HOST == 'MANDRILL' ) {
+		// Setup data
+		$sw_from = convert_email($from);
+		$sw_to = convert_email($to);
+		$text = strip_tags($message);
+		$html = $message;
+		$emailer_host='Mandrill';
+
+		// Setup connection info
+		$transport = Swift_SmtpTransport::newInstance('smtp.mandrillapp.com1', 587);
+		$transport->setUsername(SMTP_USERNAME);
+		$transport->setPassword(SMTP_PASSWORD);
+		$swift = Swift_Mailer::newInstance($transport);
+
+		// Setup Data object
+		$sw_message = new Swift_Message($subject);
+		$sw_message->setFrom($sw_from);
+		$sw_message->setBody($html, 'text/html');
+		$sw_message->setTo($sw_to);
+		$sw_message->addPart($text, 'text/plain');
+ 		if ($bcc) {
+			$sw_bcc=convert_email($bcc);
+			//echo "<pre>Setting BCC[$bcc] to [".print_r($sw_bcc,true)."]</pre>";
+			$sw_message->setBcc($sw_bcc);
+		}
+		if ($cc) {
+			$sw_cc=convert_email($cc);
+			//echo "<pre>Setting CC[$cc] to [".print_r($sw_cc,true)."]</pre>";
+			$sw_message->setCc($sw_cc);
+		}
+
+
+
+		// Send mail
+		if ($recipients = $swift->send($sw_message, $failures)) {
+			$resp=true;
+			$status='SUCCESS';
+		} else {
+			LOG_MSG('ERROR',"send_email(MANDRILL): Error sending email=[".print_r($failures,true)."]");
+			$resp=false;
+			$status='FAILED';
+		}
+	} else {
+		LOG_MSG("INFO","EMAILER_HOST is OFF. Not sending email");
+		$status='NOT SENT';
+		$resp=true;
+	}
+
+	$email_resp=db_emails_insert(
+						$from,
+						$to,
+						$cc,
+						$bcc,
+						$plain_subject,
+						$message,
+						$status,
+						$headers,
+						EMAILER_HOST);
+	if ( $email_resp['STATUS'] != 'OK' ) {
+		LOG_MSG('ERROR',"send_email(): Error while inserting in EMails talble from=[$from] to=[$to]");
+	}
+
+
+	LOG_MSG("INFO","
+	******************************EMAIL START[$status]******************************
+	TO: [$to]
+	$headers
+	SUBJECT:[$subject]
+	$message
+	******************************EMAIL END******************************");
+
+	return $resp;
+}
+
+
+/* Function to convert email address from 
+ * Shopnix Support <support@shopnix.in> => support@shopnix.in => Shopnix Support
+ */
+function convert_email($src_email_addr) {
+
+	$final_emails_array=array();
+	$src_email_addr=trim($src_email_addr,',');	// Clean up email IDS
+
+
+	$email_addr_arr=preg_split("/,/",$src_email_addr);
+	//echo "<pre>convert_email(): ============================================ </pre>";
+	//echo "<pre>convert_email(): SRC EMAIL [$src_email_addr]</pre>";
+	//echo "<pre>convert_email(): SPLIT SRC EMAIL".print_r($email_addr_arr,true)."</pre>";
+
+	foreach ($email_addr_arr as $email_addr) {
+		//echo "<pre>     convert_email(): EACH EMAIL=[$email_addr]</pre>";
+		// Split it by '<' to seperate the email id from the name
+		$email_addr=preg_split("/</",$email_addr);
+		switch (count($email_addr)) {
+			case 1:	// Only email ID is present
+					$email_id=trim(str_replace(">","",$email_addr[0]));
+					$name=$email_id;
+					break;
+			case 2:	// Both name & email ID is present
+					$name=trim($email_addr[0]);
+					$email_id=trim(str_replace(">","",$email_addr[1]));
+					break;
+		}
+		$final_emails_array[$email_id]=$name;
+		//echo "<pre>     convert_email(): FINAL EMAILS ARRAY=[".print_r($final_emails_array,true)."]</pre>";
+	}
+
+	//$a=array("asdsad","adsdsa"=>"asdsad","bbbb");
+	//echo "<pre>convert_email(): EXPECTED FORMAT=[".print_r($a,true)."]</pre>";
+
+	//echo "<pre>convert_email(): RETURNING FINAL EMAILS ARRAY=[".print_r($final_emails_array,true)."]</pre>";
+	return $final_emails_array;
+}
+
+ 
+ 
+
+
+
 if ( ! function_exists('is_php'))
 {
 	/**

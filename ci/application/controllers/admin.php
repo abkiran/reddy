@@ -36,30 +36,87 @@ class Admin extends CI_Controller {
 		
 		
 		$this->data['title'] = "Admin";
-		$this->load->view('admin/index', $this->data);
+		$this->page('diet');
 		
 	}
 	
-	public function page($go='list') { 
+	public function page($go='list',$_id='') { 
 		$this->data['title'] = "Admin";
+		$do = get_arg($_POST,'do');
+		$id = get_arg($_POST,'id');
+		$diet_code=get_arg($_POST,"diet_code");
+		$diet_name=get_arg($_POST,"diet_name");
+		//print_r($_POST);exit;
+		if( $do == 'save') {
+			$add_more=get_arg($_POST,"add_more");
+			$this->data['resp'] = $this->admin_model->page_save($id,$diet_code,$diet_name);
+			if ( $add_more == 'on' ) {
+				$go = 'add'; 
+			}else{
+				$go = 'list'; 
+			}
+		}elseif( $do == 'update' ) {
+			$this->data['resp'] = $this->admin_model->page_update($id,$diet_code,$diet_name);
+			//print_r($this->data['resp']); exit;
+			$go = 'list'; 
+		}elseif( $do == 'diet' ) {
+			//$this->data['resp'] = $this->admin_model->get_diet();
+			//print_r($this->data['resp']); exit;
+			$go = 'diet_print'; 
+		}
+		$this->data['page'] = $go;
 		switch($go){
 			case 'list':
-				$this->load->view('admin/header', $this->data);
-				$this->load->view('admin/leftnav', $this->data);
+				$this->data['rows'] = $this->admin_model->page_list();
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/html/topbar', $this->data);
+				$this->load->view('admin/html/leftnav', $this->data);
 				$this->load->view('admin/page/list', $this->data);
-				$this->load->view('admin/footer', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
 				break;
 			case 'add':
-				$this->load->view('admin/header', $this->data);
-				$this->load->view('admin/leftnav', $this->data);
+				$this->data['do']='save';
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/html/topbar', $this->data);
+				$this->load->view('admin/html/leftnav', $this->data);
 				$this->load->view('admin/page/record', $this->data);
-				$this->load->view('admin/footer', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
 				break;
 			case 'modify':
-				$this->load->view('admin/header', $this->data);
-				$this->load->view('admin/leftnav', $this->data);
+				$this->data['do']='update';
+				$this->data['id']=$_id;
+				$this->data['rows'] = $this->admin_model->page_list($_id);
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/html/topbar', $this->data);
+				$this->load->view('admin/html/leftnav', $this->data);
 				$this->load->view('admin/page/record', $this->data);
-				$this->load->view('admin/footer', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
+				break;
+			case 'diet':
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/html/topbar', $this->data);
+				$this->load->view('admin/html/leftnav', $this->data);
+				$this->load->view('admin/page/diet', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
+				break;
+			case 'diet_print':
+					$morning=get_arg($_POST,"morning");
+					$this->data['diet']['morning']=$morning;
+					$dc1=get_arg($_POST,"dc1");
+				$this->data['diet']['dc1'] = $this->admin_model->get_diet($dc1);
+					$dc2=get_arg($_POST,"dc2");
+				$this->data['diet']['dc2'] = $this->admin_model->get_diet($dc2);
+					$dc3=get_arg($_POST,"dc3");
+				$this->data['diet']['dc3'] = $this->admin_model->get_diet($dc3);
+					$dc4=get_arg($_POST,"dc4");
+				$this->data['diet']['dc4'] = $this->admin_model->get_diet($dc4);
+					$dc5=get_arg($_POST,"dc5");
+				$this->data['diet']['dc5'] = $this->admin_model->get_diet($dc5);
+	
+				//print_r($this->data['diet']);exit;
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/page/diet_print', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
 				break;
 		}
 	} 

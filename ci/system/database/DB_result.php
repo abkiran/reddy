@@ -303,6 +303,7 @@ class CI_DB_result {
 		{
 			$this->result_array[] = $row;
 		}
+			$this->result_array[0]['NROWS'] = count($this->result_array);
 
 		return $this->result_array;
 	}
