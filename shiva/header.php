@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		 <meta name="keywords" content="venus county, Aashrithaa Properties Venus County Jigani, Bangalore, venuscounty, shiva reddy">
+		 <meta name="keywords" content="venus county, Aashrithaa Properties Venus County Jigani, Bangalore, venuscounty, shiva reddy, phase 1, phase 2 , phase 3, phase 4">
         <meta name="description" content="Welcome to Venus County. A new venture from Aashrithaa properties, incepted in the year 2004 are one of the emerging real estate companies in Bangalore. ">
 <link href="css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
