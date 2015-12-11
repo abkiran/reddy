@@ -1,6 +1,6 @@
 <?php             
 //$this->load->view('header1');
-$this->load->view('sidebar');
+//$this->load->view('sidebar');
 ?>
 <div class="col-md-10">
 
@@ -19,5 +19,5 @@ $this->load->view('sidebar');
       <p><?php echo form_submit('submit', lang('forgot_password_submit_btn'));?></p>
 
 <?php echo form_close();
-$this->load->view('footer');
+//$this->load->view('footer');
 ?>

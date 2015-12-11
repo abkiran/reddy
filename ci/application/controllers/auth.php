@@ -12,6 +12,27 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
+		$this->load->library('email');
+		$config['protocol']    = 'smtp';
+
+            $config['smtp_host']    = 'ssl://smtp.gmail.com';
+
+            $config['smtp_port']    = '465';
+
+            $config['smtp_timeout'] = '7';
+
+            $config['smtp_user']    = 'kirancse123@gmail.com';
+
+            $config['smtp_pass']    = 'soft3_kk';
+
+            $config['charset']    = 'utf-8';
+
+            $config['newline']    = "\r\n";
+
+            $config['mailtype'] = 'text'; // or html
+
+            $config['validation'] = TRUE; // bool whether to validate email or not      
+		            $this->email->initialize($config);
 	}
 
 	// redirect if needed, otherwise display the user list
