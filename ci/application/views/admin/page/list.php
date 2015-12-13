@@ -27,10 +27,10 @@
 				  </thead>
 				  <tbody>
 				  <?php for ( $i = 0; $i < $rows[0]['NROWS']; $i++ ) { ?>
-					<tr class="gradeX">
+					<tr class="gradeX" id="row-<?php echo $rows[$i]['id']; ?>">
 					  <td><a href="<?php echo site_url(); ?>/admin/page/modify/<?php echo $rows[$i]['id']; ?>"><?php echo $rows[$i]['diet_code']; ?></a></td>
 					  <td><?php echo $rows[$i]['diet_name']; ?></td>
-					  <td><a class="close-down" href="<?php echo site_url(); ?>/admin/page/remove/<?php echo $rows[$i]['id']; ?>"><i class="fa fa-times"></i></a> </td>
+					  <td><a class="close-down remove" id="<?php echo $rows[$i]['id']; ?>" href="#"><i class="fa fa-times"></i></a> </td>
 					</tr>
 					<?php } ?>
 				  </tfoot>
@@ -48,17 +48,28 @@
 	</div>
 	<script src="<?php echo base_url(); ?>assets/admin/js/jquery-2.1.0.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/admin/js/common-script.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/js/jquery.slimscroll.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/plugins/data-tables/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/plugins/data-tables/DT_bootstrap.js"></script>
-	<script src="<?php echo base_url(); ?>assets/admin/plugins/data-tables/dynamic_table_init.js"></script>
-	<script src="<?php echo base_url(); ?>assets/admin/plugins/edit-table/edit-table.js"></script>
-	<script>
-		  jQuery(document).ready(function() {
-			  EditableTable.init();
-		  });
-	</script>
-
 	<script src="<?php echo base_url(); ?>assets/admin/js/jPushMenu.js"></script> 
-	<script src="<?php echo base_url(); ?>assets/admin/js/side-chats.js"></script>
+	
+<script>
+$(document).ready(function(){   
+
+    $(".remove").click(function()
+    {
+	var id=$(this).attr('id');
+     $.ajax({
+         type: "POST",
+         url: "<?php echo site_url(); ?>/admin/removepage/", 
+         data: {id: id},
+         success: 
+              function(data){
+                alert(data);  //as a debugging message.
+				$("#row-"+id).fadeOut("slow");
+              }
+          });// you have missed this bracket
+     return false;
+ });
+ });
+</script>

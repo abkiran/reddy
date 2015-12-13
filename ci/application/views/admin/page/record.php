@@ -43,7 +43,7 @@
 	</div>
 </div>
 <?php } else {
-	if ( $rows['NROWS'] > 0 ) {
+	if ( $rows[0]['NROWS'] > 0 ) {
   ?>
 	<div class="container clear_both padding_fix">
       <div class="row">
