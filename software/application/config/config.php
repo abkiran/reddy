@@ -19,7 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = '';
 define('site_title','Body and Soul Yoga');
-define('LOG_FILE',"/var/LOG/kiran/KIRAN".date("Y-m-d").".log");
+define('LOG_FILE',"/var/log/kiran/KIRAN".date("Y-m-d").".log");
+define('log_path',"/var/log/kiran/KIRAN".date("Y-m-d").".log");
 /*
 |--------------------------------------------------------------------------
 | Index File
