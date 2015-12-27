@@ -1,0 +1,208 @@
+<?php
+
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Admin extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        //  $this->load->library('My_PHPMailer');
+        $this->load->library('ion_auth');
+        $this->load->library('form_validation');
+        $this->load->helper('form');
+        $this->load->model('admin_model');
+        $user = $this->ion_auth->user()->row();
+        $this->data['userx'] = $user->username;
+        $this->data['idx'] = $user->id;
+        $this->data['title']="...";
+        $this->data['temp']=NULL;
+        $this->data['msg']=NULL;
+
+        if (!$this->ion_auth->logged_in()) {
+            redirect('auth/login');
+        }
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('message', '');
+            redirect('employee');
+        }
+        $this->data['message'] = $this->session->flashdata('message');
+        //$this->data['msg'] = $this->session->flashdata('msg');
+    }
+
+    
+	public function index() {
+		
+		
+		$this->data['title'] = "Admin";
+		$this->page('diet');
+		
+	}
+	
+	public function page($go='list',$_id='') { 
+		$this->data['title'] = "Admin";
+		$do = get_arg($_POST,'do');
+		$id = get_arg($_POST,'id');
+		$diet_code=get_arg($_POST,"diet_code");
+		$diet_name=get_arg($_POST,"diet_name");
+		//print_r($_POST);exit;
+		if( $do == 'save') {
+			$add_more=get_arg($_POST,"add_more");
+			$this->data['resp'] = $this->admin_model->page_save($id,$diet_code,$diet_name);
+			if ( $add_more == 'on' ) {
+				$go = 'add'; 
+			}else{
+				$go = 'list'; 
+			}
+		}elseif( $do == 'update' ) {
+			$this->data['resp'] = $this->admin_model->page_update($id,$diet_code,$diet_name);
+			//print_r($this->data['resp']); exit;
+			$go = 'list'; 
+		}elseif( $do == 'diet' ) {
+			//$this->data['resp'] = $this->admin_model->get_diet();
+			//print_r($this->data['resp']); exit;
+			$go = 'diet_print'; 
+		}
+		$this->data['page'] = $go;
+		switch($go){
+			case 'list':
+				$this->data['rows'] = $this->admin_model->page_list();
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/html/topbar', $this->data);
+				$this->load->view('admin/html/leftnav', $this->data);
+				$this->load->view('admin/page/list', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
+				break;
+			case 'add':
+				$this->data['do']='save';
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/html/topbar', $this->data);
+				$this->load->view('admin/html/leftnav', $this->data);
+				$this->load->view('admin/page/record', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
+				break;
+			case 'modify':
+				$this->data['do']='update';
+				$this->data['id']=$_id;
+				$this->data['rows'] = $this->admin_model->page_list($_id);
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/html/topbar', $this->data);
+				$this->load->view('admin/html/leftnav', $this->data);
+				$this->load->view('admin/page/record', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
+				break;
+			case 'diet':
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/html/topbar', $this->data);
+				$this->load->view('admin/html/leftnav', $this->data);
+				$this->load->view('admin/page/diet', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
+				break;
+			case 'diet_print':
+					$morning=get_arg($_POST,"morning");
+					$this->data['diet']['morning']=$morning;
+					$dc1=get_arg($_POST,"dc1");
+				$this->data['diet']['dc1'] = $this->admin_model->get_diet($dc1);
+					$dc2=get_arg($_POST,"dc2");
+				$this->data['diet']['dc2'] = $this->admin_model->get_diet($dc2);
+					$dc3=get_arg($_POST,"dc3");
+				$this->data['diet']['dc3'] = $this->admin_model->get_diet($dc3);
+					$dc4=get_arg($_POST,"dc4");
+				$this->data['diet']['dc4'] = $this->admin_model->get_diet($dc4);
+					$dc5=get_arg($_POST,"dc5");
+				$this->data['diet']['dc5'] = $this->admin_model->get_diet($dc5);
+	
+				//print_r($this->data['diet']);exit;
+				$this->load->view('admin/html/header', $this->data);
+				$this->load->view('admin/page/diet_print', $this->data);
+				$this->load->view('admin/html/footer', $this->data);
+				break;
+		}
+	} 
+    public function removepage() {
+		$id=$_POST['id'];
+		$resp = $this->admin_model->removepage($id);
+		if ( $resp == 1 ) echo "Deleted";
+		else echo "error";
+		exit;
+    }
+    public function undo($tbl,$id) {
+        $this->admin_model->undo($tbl,$id);
+        $this->data['msg']=0;
+        $this->data['temp']=NULL;
+        $url=$this->uri->segment(2); 
+       $url1=$this->uri->segment(3); 
+        if($url=='index' || $url1=='cards' || $url== NULL){
+        $this->callController(1);
+        }
+ else if($url1=='projects') {
+     $this->callController(2);
+        }
+ else {
+     $this->callController(3);
+ }
+ }
+        //$this->load->view('index', $this->data);
+    
+    public function projects() {
+        
+         $table= $this->admin_model->gets('projects');
+        //$this->data['cars'] = $q;
+         $this->load->helper('form');
+	$this->load->library('form_validation');
+        $this->data['users'] = $this->admin_model->fetch();
+        
+        $q=  $this->admin_model->getCards();
+        $table= $this->admin_model->gets('projects');
+        $this->data['cars'] = $q;
+        $this->data['projects'] = $table;
+        $this->load->view('projects',  $this->data);
+        
+    }
+    public function demo($page,$id) {
+        $this->temp();
+        $table= $this->admin_model->gets('projects');
+        $this->data['projects'] = $table;
+        $table1= $this->admin_model->getp('projects',$id);
+        $this->data['p'] = $table1;
+        $this->data['ids'] = $id;
+        $this->load->view($page,  $this->data);
+    }
+    public function updatep() {
+        $this->admin_model->updateP();
+        $this->projects();
+    }
+    public function temp() {
+        $this->data['users'] = $this->admin_model->fetch();
+        
+        $q=  $this->admin_model->getCards();
+        $table= $this->admin_model->gets('projects');
+        $this->data['cars'] = $q;
+        $this->data['projects'] = $table;
+    }
+    public function viewt() {
+        $v=  $this->input->post('id');
+        $user = $this->ion_auth->user($v)->row();
+        $this->data['uname']=$user->username;
+        $this->data['ts']=$this->admin_model->gett($v);
+        $this->load->view('viewt',  $this->data);
+        $this->load->view('footer');
+    }
+    public function callController($choice) {
+        switch ($choice) {
+            case 1:
+                $this->index();
+            break;
+        case 2:
+            $this->projects();
+            break;
+            case 3:
+                $this->home('emp');
+        
+            default:
+                $this->home();
+                break;
+        }
+    }
+}
