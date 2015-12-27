@@ -13,24 +13,24 @@
 		  <div class="block-web">
 		   <div class="header">
 			  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-			  <h3 class="content-header">Diet List</h3>
+			  <h3 class="content-header">Page List</h3>
 			</div>
 		 <div class="porlets-content">
 			<div class="table-responsive">
 				<table  class="display table table-bordered table-striped" id="dynamic-table">
 				  <thead>
 					<tr>
-					  <th>Diet Code</th>
-					  <th>Diet Name</th>
+					  <th>Page Name</th>
+					  <th>Title</th>
 					  <th></th>
 					</tr>
 				  </thead>
 				  <tbody>
 				  <?php for ( $i = 0; $i < $rows[0]['NROWS']; $i++ ) { ?>
-					<tr class="gradeX" id="row-<?php echo $rows[$i]['id']; ?>">
-					  <td><a href="<?php echo site_url(); ?>/admin/page/modify/<?php echo $rows[$i]['id']; ?>"><?php echo $rows[$i]['diet_code']; ?></a></td>
-					  <td><?php echo $rows[$i]['diet_name']; ?></td>
-					  <td><a class="close-down remove" id="<?php echo $rows[$i]['id']; ?>" href="#"><i class="fa fa-times"></i></a> </td>
+					<tr class="gradeX" id="row-<?php echo $rows[$i]['page_id']; ?>">
+					  <td><a href="<?php echo site_url(); ?>/admin/index/modify/<?php echo $rows[$i]['page_id']; ?>"><?php echo $rows[$i]['name']; ?></a></td>
+					  <td><?php echo $rows[$i]['title']; ?></td>
+					  <td><a class="close-down remove" id="<?php echo $rows[$i]['page_id']; ?>" href="#"><i class="fa fa-times"></i></a> </td>
 					</tr>
 					<?php } ?>
 				  </tfoot>

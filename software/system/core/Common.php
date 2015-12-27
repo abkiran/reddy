@@ -76,7 +76,7 @@ function LOG_MSG($level,$msg)
 		$id="<".get_ip().":[".$_SESSION['user_id']."]".$_SESSION['email_id'].">";
 	// NOT LOGGED IN
 	} else {
-		$id="<".get_ip().":GUEST>";
+		$id="<".$_SERVER['SERVER_NAME'].":GUEST>";
 	}
 
 	// If we are processing a module, then log it in as well

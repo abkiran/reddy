@@ -14,3 +14,4 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/admin/plugins/scroll/nanoscroller.css">
 <link href="<?php echo base_url(); ?>/assets/admin/plugins/morris/morris.css" rel="stylesheet" />
 </head>
+<?php LOG_ARR('info','kk',$rows); ?>
