@@ -90,9 +90,6 @@ body{
 .header{
 	background-color: #EAF6F7;
 }
-.title-box_secondary{
-    margin-left: 44px;
-}
 .header-top{
 	padding:2% 0;
 }
@@ -113,7 +110,6 @@ body{
 }
 .logo {
 	float: left;
-	margin-top:1%;
 }
 .cart {
 	float: right;
@@ -1247,4 +1243,24 @@ span.item_title_part1 {
 	.header-sidebar {
 		text-align:none;
 	}
+}
+.slimScrollDiv::-webkit-scrollbar{
+	width:5px;
+	background-color:#f6f6f6;
+} 
+.slimScrollDiv::-webkit-scrollbar-thumb{
+	background-color:#999;
+}
+.slimScrollDiv::-webkit-scrollbar-thumb:hover{
+	background-color:#999;
+	border:1px solid #999;
+}
+.slimScrollDiv::-webkit-scrollbar-thumb:active{
+	background-color:#999;
+}
+.title-box_secondary{
+	text-align: center;
+}
+#slider {
+height: 450px;
 }

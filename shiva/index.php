@@ -3,11 +3,11 @@
 		  <div class="slider">
 	      	<div class="slider-wrapper theme-default">
 	            <div id="slider" class="nivoSlider">
-                        <img src="images/homepage1.jpg" data-thumb="images/1.jpg" alt="" />
-                        <img src="images/homepage2.jpg" data-thumb="images/2.jpg" alt="" />
-                        <img src="images/homepage3.jpg" data-thumb="images/3.jpg" alt="" />
-                        <img src="images/whyus1.jpg" data-thumb="images/4.jpg" alt="" />
-                        <img src="images/whyus2.jpg" data-thumb="images/5.jpg" alt="" />
+                        <img src="images/new/3.jpg" data-thumb="images/new/3.jpg" alt="" />
+                        <img src="images/new/7.jpg" data-thumb="images/new/7.jpg" alt="" />
+                        <img src="images/new/8.jpg" data-thumb="images/new/1.jpg" alt="" />
+                        <img src="images/new/9.jpg" data-thumb="images/new/9.jpg" alt="" />
+                        <img src="images/new/1.jpg" data-thumb="images/new/1.jpg" alt="" />
 	            </div>
 	        </div>
    		</div>
@@ -27,7 +27,7 @@
 									<img src="web/images/a.png" alt=""/>
 								</div>
 								<div class="flat-desc">
-									<h1>Venus county phase2</h1>
+									<h1>Venus county phase 2</h1>
 								</div>
 								<div class="clear"></div>
 								<p>We would like to see our current work as vision driven change in execution for you. The projects and properties are driven to enhance your lifestyle and add value across economics, service and continued support with utmost integrity. Join us at the earliest to reap optimum value. Explore your choice here.</p>
@@ -38,7 +38,7 @@
 									<img src="web/images/b.png" alt=""/>
 								</div>
 								<div class="flat-desc">
-									<h1>Venus county phase3</h1>
+									<h1>Venus county phase 3</h1>
 								</div>
 								<div class="clear"></div>
 								<p>Ethical and transparent in our dealings integrity has been th9 cornerstone of our growth driving huge interest in all our future plans well ahead of time. Our vision driven policies for delivering optimum value to customers has us working tirelessly on new and improved projects and properties. Discover our future plans and gain ahead of the trend. </p>
@@ -49,10 +49,10 @@
 									<img src="web/images/c.png" alt=""/>
 								</div>
 								<div class="flat-desc">
-									<h1>Venus county phase4</h1>
+									<h1>Venus county phase 4</h1>
 								</div>
 								<div class="clear"></div>
-								<p>Aashrithaa Properties has journeyed along with these landmarks to be a strength and force it is. Our completed projects not only stand testimony of our work and progress, but are a source of knowledge that our expertise has flourished from. Journey back in time with us, Relive our proud moments. </p>
+								<p>S.V Developers has journeyed along with these landmarks to be a strength and force it is. Our completed projects not only stand testimony of our work and progress, but are a source of knowledge that our expertise has flourished from. Journey back in time with us, Relive our proud moments. </p>
 								
 							</div>
 							<div class="clear"></div> 

@@ -28,7 +28,7 @@ This location will be connected through ATR ring road, Peripheral ring road and 
 					<div class="grid_1_of_4 images_1_of_4">
 						<a href="images/t-pic9.jpg" class="swipebox" title="Image Title"> <img src="web/images/pic9.jpg" alt=""><span class="zoom-icon"></span> </a>
 						<h4>Welcome to Venus County - jigani</h4>
-						<p>This is Shiva reddy from Aashrithaa Properties..Here I am sending Venus County Phase 2,3,&4 MAPS  BMRDA Approved residential project details as below and attached layout plan and others.
+						<p>This is Shiva reddy from S.V Developers..Here I am sending Venus County Phase 2,3,&4 MAPS  BMRDA Approved residential project details as below and attached layout plan and others.
 
   
 Venus County :- (Towards Bangalore South):
