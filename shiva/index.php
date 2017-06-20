@@ -3,14 +3,14 @@
 		  <div class="slider">
 	      	<div class="slider-wrapper theme-default">
 	            <div id="slider" class="nivoSlider">
-                        <img src="images/new/3.jpg" data-thumb="images/new/3.jpg" alt="" />
-                        <img src="images/new/7.jpg" data-thumb="images/new/7.jpg" alt="" />
-                        <img src="images/new/8.jpg" data-thumb="images/new/8.jpg" alt="" />
-                        <img src="images/new/9.jpg" data-thumb="images/new/9.jpg" alt="" />
+                        <img src="images/new/<?php echo $media; ?>/3.jpg" data-thumb="images/new/<?php echo $media; ?>/3.jpg" alt="" />
+                        <img src="images/new/<?php echo $media; ?>/7.jpg" data-thumb="images/new/<?php echo $media; ?>/7.jpg" alt="" />
+                        <img src="images/new/<?php echo $media; ?>/8.jpg" data-thumb="images/new/<?php echo $media; ?>/8.jpg" alt="" />
+                        <img src="images/new/<?php echo $media; ?>/9.jpg" data-thumb="images/new/<?php echo $media; ?>/9.jpg" alt="" />
 	            </div>
 	        </div>
    		</div>
-		<!------End Slider ------------>
+   		<!------End Slider ------------>
 		<div class="main">
 			<?php include_once 'services.php'; ?>
 		<div class="content-bottom1">
@@ -74,7 +74,7 @@
 									<h1>Venus county phase 6 is being launched</h1>
 								</div>
 								<div class="clear"></div>
-								<h2>Bookings open now Contact : 9535319779</h2>
+								<h2>Bookings open now Contact : 9449433684</h2>
 							</div>
 						</div>	
 									    

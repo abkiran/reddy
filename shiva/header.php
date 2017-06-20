@@ -1,14 +1,25 @@
+<?php
+$DOMAIN=$_SERVER['HTTP_HOST'];
+if( $DOMAIN!='madhumitraestates.com' || $DOMAIN!='madhumitra.in' ){ 
+	$media='venuscounty.co.in';
+	$ph="9535319779";
+	$site_name="Venus county";
+} else{
+	$ph="9449433684";
+	$media=$DOMAIN;
+	$site_name="Madhumitra";
+} ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Welcome to Venus County - jigani</title>
+<title>Welcome to <?php echo $site_name; ?> - jigani</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		 <meta name="keywords" content="venus county, Venus County Jigani, Aashritha venus county, Madhumitra Phase 2, Madhumitra estates jigani, BMRDA plots jigani, venus county phase 1, venus county phase 2 , venus county phase 3, venus county phase 4, venus county jigani price, BMRDA approved plots jigani,">
-        <meta name="description" content="Welcome to Venus County. A new venture from S.V Developers, incepted in the year 2004 are one of the emerging real estate companies in Bangalore. ">
+		 <meta name="keywords" content="<?php echo $site_name; ?>, <?php echo $site_name; ?> Jigani, Aashritha <?php echo $site_name; ?>, Madhumitra Phase 2, Madhumitra estates jigani, BMRDA plots jigani, <?php echo $site_name; ?> phase 1, <?php echo $site_name; ?> phase 2 , <?php echo $site_name; ?> phase 3, <?php echo $site_name; ?> phase 4, <?php echo $site_name; ?> jigani price, BMRDA approved plots jigani,">
+        <meta name="description" content="Welcome to <?php echo $site_name; ?>. A new venture from S.V Developers, incepted in the year 2004 are one of the emerging real estate companies in Bangalore. ">
 <link href="css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.nivo.slider.js"></script>
@@ -17,9 +28,7 @@
         $('#slider').nivoSlider();
     });
 // analytics 
-<?php
-$DOMAIN=$_SERVER['HTTP_HOST'];
-
+<?php 
 if ( $_SERVER['HTTP_HOST'] != 'localhost' ){ ?>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -50,13 +59,13 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 	<div class="wrap"> 
 		<div class="header-top">
 			 <div class="logo">
-                <a href="index.php"><img style="max-height: 105px;float: left;" src="images/bmrda.png" alt=""> <h1 style="font-size: 52px;width: 164%;margin-top: 30px;text-transform: uppercase;color: #8f9334;"><?php echo $DOMAIN=='venuscounty.co.in'?'Venus County':explode('.', $DOMAIN)[0]; ?></h1></a>
+                <a href="index.php"><img style="max-height: 105px;float: left;" src="images/bmrda.png" alt=""> <h1 style="font-size: 52px;width: 164%;margin-top: 30px;text-transform: uppercase;color: #8f9334;"><?php echo $DOMAIN=='venuscounty.co.in'?'<?php echo $site_name; ?>':explode('.', $DOMAIN)[0]; ?></h1></a>
 			 </div>
 			 <div class="cart">
 				<div class="span6 header-sidebar" data-motopress-type="dynamic-sidebar" data-motopress-sidebar-id="footer-sidebar-4">
 					<div id="text-6" class="visible-all-devices "><div class="textwidget"><a class="header-btn">BOOK NOW</a></div></div>
 					<div class="ph-no">
-                                             <strong class="phone-number">Call     +91 9449433684
+                                             <strong class="phone-number">Call     +91 <?php echo $ph; ?>
                                             <!-- <span style="float: right; margin-top: 10px">Shiva Reddy </span> --></strong>
                                         </div>
 				</div>
