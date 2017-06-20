@@ -1,6 +1,6 @@
 <?php
 $DOMAIN=$_SERVER['HTTP_HOST'];
-if( $DOMAIN!='madhumitraestates.com' || $DOMAIN!='madhumitra.in' ){ 
+if( $DOMAIN!='madhumitraestates.com' && $DOMAIN!='madhumitra.in' ){ 
 	$media='venuscounty.co.in';
 	$ph="9535319779";
 	$site_name="Venus county";
