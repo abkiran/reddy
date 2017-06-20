@@ -18,7 +18,7 @@
 				<div class="section group">
 				  <div class="cont span_2_of_3">
 				  		<div class="heading">
-				  			<h1>Venus county jigani</h1>
+				  			<h1><?php echo $site_name; ?> jigani</h1>
 				  		</div>
 				       <div class="section group">
 				       		<div class="col_1_of_4 span_1_of_3">
@@ -26,7 +26,7 @@
 									<img src="web/images/a.png" alt=""/>
 								</div>
 								<div class="flat-desc">
-									<h1>Venus county phase 2</h1>
+									<h1><?php echo $site_name; ?> phase 2</h1>
 								</div>
 								<div class="clear"></div>
 								<p>We would like to see our current work as vision driven change in execution for you. The projects and properties are driven to enhance your lifestyle and add value across economics, service and continued support with utmost integrity. Join us at the earliest to reap optimum value. Explore your choice here.</p>
@@ -37,7 +37,7 @@
 									<img src="web/images/b.png" alt=""/>
 								</div>
 								<div class="flat-desc">
-									<h1>Venus county phase 3</h1>
+									<h1><?php echo $site_name; ?> phase 3</h1>
 								</div>
 								<div class="clear"></div>
 								<p>Ethical and transparent in our dealings integrity has been th9 cornerstone of our growth driving huge interest in all our future plans well ahead of time. Our vision driven policies for delivering optimum value to customers has us working tirelessly on new and improved projects and properties. Discover our future plans and gain ahead of the trend. </p>
@@ -48,7 +48,7 @@
 									<img src="web/images/c.png" alt=""/>
 								</div>
 								<div class="flat-desc">
-									<h1>Venus county phase 4</h1>
+									<h1><?php echo $site_name; ?> phase 4</h1>
 								</div>
 								<div class="clear"></div>
 								<p>S.V Developers has journeyed along with these landmarks to be a strength and force it is. Our completed projects not only stand testimony of our work and progress, but are a source of knowledge that our expertise has flourished from. Journey back in time with us, Relive our proud moments. </p>
@@ -60,7 +60,7 @@
 									<img src="web/images/c.png" alt=""/>
 								</div>
 								<div class="flat-desc">
-									<h1>Venus county phase 5</h1>
+									<h1><?php echo $site_name; ?> phase 5</h1>
 								</div>
 								<div class="clear"></div>
 								<p>S.V Developers has journeyed along with these landmarks to be a strength and force it is. Our completed projects not only stand testimony of our work and progress, but are a source of knowledge that our expertise has flourished from. Journey back in time with us, Relive our proud moments. </p>
@@ -71,7 +71,7 @@
 									<img src="web/images/c.png" alt=""/>
 								</div>
 								<div class="flat-desc">
-									<h1>Venus county phase 6 is being launched</h1>
+									<h1><?php echo $site_name; ?> phase 6 is being launched</h1>
 								</div>
 								<div class="clear"></div>
 								<h2>Bookings open now Contact : 9449433684</h2>

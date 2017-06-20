@@ -19,7 +19,7 @@
 				<div class="section group">
 					<div class="grid_1_of_4 images_1_of_4">
 						<a href="images/t-pic8.jpg" class="swipebox" title="Aashritha"> <img src="web/images/pic8.jpg" alt=""><span class="zoom-icon"></span> </a>
-						<h4>Welcome to Venus County - jigani</h4>
+						<h4>Welcome to <?php echo $site_name; ?> - jigani</h4>
 						<p>This project is situated at Jigani (APC circle) to Anekal main road before Haragadde bus stop. Close to Electronic City.
 This location will be connected Jigani Anekal main road IMP road 250 feet road (entrance 60 feet road).
 This location will be connected through ATR ring road, Peripheral ring road and 300 ft Satellite Township Ring Road (STRR)..</p>
@@ -27,11 +27,11 @@ This location will be connected through ATR ring road, Peripheral ring road and 
 					</div>
 					<div class="grid_1_of_4 images_1_of_4">
 						<a href="images/t-pic9.jpg" class="swipebox" title="Image Title"> <img src="web/images/pic9.jpg" alt=""><span class="zoom-icon"></span> </a>
-						<h4>Welcome to Venus County - jigani</h4>
-						<p>This is Shiva reddy from S.V Developers..Here I am sending Venus County Phase 2,3,&4 MAPS  BMRDA Approved residential project details as below and attached layout plan and others.
+						<h4>Welcome to <?php echo $site_name; ?> - jigani</h4>
+						<p>This is Shiva reddy from S.V Developers..Here I am sending <?php echo $site_name; ?> Phase 2,3,&4 MAPS  BMRDA Approved residential project details as below and attached layout plan and others.
 
   
-Venus County :- (Towards Bangalore South):
+<?php echo $site_name; ?> :- (Towards Bangalore South):
  
       This project is situated at Jigani(APC circle) to Anekal main road before Haragadde busstop.  Close to Electronic City..</p>
 						<!--<a href="#" class="link">Read More</a>-->

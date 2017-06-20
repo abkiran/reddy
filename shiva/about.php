@@ -19,8 +19,8 @@
 					 <div class="cont span_2_of_3 about_desc">
 				       <h2>About Us</h2>
 		    			   <p><span>Feel free to know about us</span></p><br><br>
-						   S.V Developers - Venus County Phase 2, phase 3, phase 4 - BMRDA Approved residential. 
-						   Venus County :- (Towards Bangalore South):
+						   S.V Developers - <?php echo $site_name; ?> Phase 2, phase 3, phase 4 - BMRDA Approved residential. 
+						   <?php echo $site_name; ?> :- (Towards Bangalore South):
  
       This project is situated at Jigani(APC circle) to Anekal main road before Haragadde busstop.  Close to Electronic City.
 
