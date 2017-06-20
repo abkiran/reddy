@@ -7,7 +7,7 @@ if( $DOMAIN!='madhumitraestates.com' || $DOMAIN!='madhumitra.in' ){
 } else{
 	$ph="9449433684";
 	$media=$DOMAIN;
-	$site_name="Madhumitra";
+	$site_name="Madhumitra Estates";
 } ?>
 <!DOCTYPE HTML>
 <html>
@@ -59,7 +59,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 	<div class="wrap"> 
 		<div class="header-top">
 			 <div class="logo">
-                <a href="index.php"><img style="max-height: 105px;float: left;" src="images/bmrda.png" alt=""> <h1 style="font-size: 52px;width: 164%;margin-top: 30px;text-transform: uppercase;color: #8f9334;"><?php echo $DOMAIN=='venuscounty.co.in'?'<?php echo $site_name; ?>':explode('.', $DOMAIN)[0]; ?></h1></a>
+                <a href="index.php"><img style="max-height: 105px;float: left;" src="images/bmrda.png" alt=""> <h1 style="font-size: 52px;width: 164%;margin-top: 30px;text-transform: uppercase;color: #8f9334;"><?php echo $site_name; ?></h1></a>
 			 </div>
 			 <div class="cart">
 				<div class="span6 header-sidebar" data-motopress-type="dynamic-sidebar" data-motopress-sidebar-id="footer-sidebar-4">
