@@ -5,9 +5,8 @@
 	            <div id="slider" class="nivoSlider">
                         <img src="images/new/3.jpg" data-thumb="images/new/3.jpg" alt="" />
                         <img src="images/new/7.jpg" data-thumb="images/new/7.jpg" alt="" />
-                        <img src="images/new/8.jpg" data-thumb="images/new/1.jpg" alt="" />
+                        <img src="images/new/8.jpg" data-thumb="images/new/8.jpg" alt="" />
                         <img src="images/new/9.jpg" data-thumb="images/new/9.jpg" alt="" />
-                        <img src="images/new/1.jpg" data-thumb="images/new/1.jpg" alt="" />
 	            </div>
 	        </div>
    		</div>
@@ -22,7 +21,7 @@
 				  			<h1>Venus county jigani</h1>
 				  		</div>
 				       <div class="section group">
-				       		<div class="col_1_of_3 span_1_of_3">
+				       		<div class="col_1_of_4 span_1_of_3">
 								<div class="flat-no">
 									<img src="web/images/a.png" alt=""/>
 								</div>
@@ -33,7 +32,7 @@
 								<p>We would like to see our current work as vision driven change in execution for you. The projects and properties are driven to enhance your lifestyle and add value across economics, service and continued support with utmost integrity. Join us at the earliest to reap optimum value. Explore your choice here.</p>
 								
 							</div>
-							<div class="col_1_of_3 span_1_of_3">
+							<div class="col_1_of_4 span_1_of_3">
 								<div class="flat-no">
 									<img src="web/images/b.png" alt=""/>
 								</div>
@@ -44,7 +43,7 @@
 								<p>Ethical and transparent in our dealings integrity has been th9 cornerstone of our growth driving huge interest in all our future plans well ahead of time. Our vision driven policies for delivering optimum value to customers has us working tirelessly on new and improved projects and properties. Discover our future plans and gain ahead of the trend. </p>
 								
 							</div>
-							<div class="col_1_of_3 span_1_of_3">
+							<div class="col_1_of_4 span_1_of_3">
 								<div class="flat-no">
 									<img src="web/images/c.png" alt=""/>
 								</div>
@@ -56,6 +55,27 @@
 								
 							</div>
 							<div class="clear"></div> 
+							<div class="col_1_of_4 span_1_of_3">
+								<div class="flat-no">
+									<img src="web/images/c.png" alt=""/>
+								</div>
+								<div class="flat-desc">
+									<h1>Venus county phase 5</h1>
+								</div>
+								<div class="clear"></div>
+								<p>S.V Developers has journeyed along with these landmarks to be a strength and force it is. Our completed projects not only stand testimony of our work and progress, but are a source of knowledge that our expertise has flourished from. Journey back in time with us, Relive our proud moments. </p>
+								
+							</div>
+							<div class="col_1_of_3 span_1_of_3" style="width: 60%;">
+								<div class="flat-no">
+									<img src="web/images/c.png" alt=""/>
+								</div>
+								<div class="flat-desc">
+									<h1>Venus county phase 6 is being launched</h1>
+								</div>
+								<div class="clear"></div>
+								<h2>Bookings open now Contact : 9535319779</h2>
+							</div>
 						</div>	
 									    
 				</div>

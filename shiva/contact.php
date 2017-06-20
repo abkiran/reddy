@@ -16,12 +16,12 @@
                                                         <span><input name="email" type="email" required class="textbox"></span>
 						    </div>
                                                     <div>
-						    	<span><label>phone</label></span>
+						    	<span><label>Phone</label></span>
                                                         <span><input name="phone" type="text" required class="textbox"></span>
                                                         <span><input name="address" type="hidden" required value="venuscounty" class="textbox"></span>
 						    </div>
 						    <div>
-						    	<span><label>Subject</label></span>
+						    	<span><label>Message</label></span>
 						    	<span><textarea name="message"> </textarea></span>
 						    </div>
 						   <div>
@@ -32,10 +32,10 @@
   				</div>
 				<div class="col span_1_of_3">
 				  <div class="company_address">
-				     	<h3>My Profile :</h3>
-                                        <p>Name     :Shiva Reddy</p>
+				     	<h3>Contact Builder</h3>
+                                        <!-- <p>Name     :Shiva Reddy</p> -->
                                         <p>Mobile   :<span style="font-size: 20px; color: #de2e2e;">9449433684</span></p>
-                                        <p>Address  :</p>
+                                        <!-- <p>Address  :</p> -->
 				   </div>
 				 </div>
 				 <div class="clear"></div> 

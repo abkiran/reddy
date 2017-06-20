@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		 <meta name="keywords" content="venus county, Venus County Jigani, Aashritha venus county, Madhumitra Phase 2, Madhumitra estates jigani, BMRDA plots jigani, venus county phase 1, venus county phase 2 , venus county phase 3, venus county phase 4, venus county jigani price">
+		 <meta name="keywords" content="venus county, Venus County Jigani, Aashritha venus county, Madhumitra Phase 2, Madhumitra estates jigani, BMRDA plots jigani, venus county phase 1, venus county phase 2 , venus county phase 3, venus county phase 4, venus county jigani price, BMRDA approved plots jigani,">
         <meta name="description" content="Welcome to Venus County. A new venture from S.V Developers, incepted in the year 2004 are one of the emerging real estate companies in Bangalore. ">
 <link href="css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
@@ -17,13 +17,16 @@
         $('#slider').nivoSlider();
     });
 // analytics 
-<?php if ( $_SERVER['HTTP_HOST'] != 'localhost' ){ ?>
+<?php
+$DOMAIN=$_SERVER['HTTP_HOST'];
+
+if ( $_SERVER['HTTP_HOST'] != 'localhost' ){ ?>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-66093530-2', 'auto');
+  ga('create', 'UA-66093530-<?php echo $DOMAIN=='venuscounty.co.in'?'2':''; ?>', 'auto');
   ga('send', 'pageview');
 
   
@@ -47,7 +50,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 	<div class="wrap"> 
 		<div class="header-top">
 			 <div class="logo">
-                <a href="index.php"><img style="max-height: 105px;float: left;" src="images/bmrda.png" alt=""> <h1 style="font-size: 52px;width: 164%;margin-top: 30px;text-transform: uppercase;color: #8f9334;">Venus County</h1></a>
+                <a href="index.php"><img style="max-height: 105px;float: left;" src="images/bmrda.png" alt=""> <h1 style="font-size: 52px;width: 164%;margin-top: 30px;text-transform: uppercase;color: #8f9334;"><?php echo $DOMAIN=='venuscounty.co.in'?'Venus County':explode('.', $DOMAIN)[0]; ?></h1></a>
 			 </div>
 			 <div class="cart">
 				<div class="span6 header-sidebar" data-motopress-type="dynamic-sidebar" data-motopress-sidebar-id="footer-sidebar-4">

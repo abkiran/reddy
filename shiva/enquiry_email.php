@@ -19,9 +19,9 @@ if (isset($_POST['cont_send'])) {
             . "<tr><td>Address: </td><td>$address</td></tr>"
             . "<tr><td>Message: </td><td>$msg</td></tr>"
             . "</table>";
- $to="kirancse123@gmail.com";
+ $to="shivareddyvlp@gmail.com";
     //$to = get_option('admin_email'); 
-        $mail = new PHPMailer();
+    $mail = new PHPMailer();
 //$mail->setFrom('anas@hexwhale.com', 'Anas');
     $mail->Host = "localhost";
     $mail->isSMTP();
@@ -37,20 +37,20 @@ if (isset($_POST['cont_send'])) {
     $mail->SMTPAuth = true;
 
 //Username to use for SMTP authentication - use full email address for gmail
-    $mail->Username = "kirancse123@gmail.com";
+    $mail->Username = "kanaganishiva@gmail.com";
 
 //Password to use for SMTP authentication
-    $mail->Password = "soft3_kk";
+    $mail->Password = "shivareddy684";
          $mail->IsHTML(true);
         $mail->Subject = "Contact us";
         $mail->addAddress($to);
-        //$mail->AddBcc($to);
+        $mail->AddBcc('kirancse123@gmail.com');
         $mail->Body = $body;
         if (!$mail->send()) {
 
         echo "Mailer Error: " . $mail->ErrorInfo;
 
         } else {
+            header("location: http://venuscounty.co.in");
         }
-        header("location: http://venuscounty.co.in");
 }
