@@ -2,10 +2,10 @@
 $DOMAIN=$_SERVER['HTTP_HOST'];
 if( $DOMAIN!='madhumitraestates.com' && $DOMAIN!='madhumitra.in' ){ 
 	$media='venuscounty.co.in';
-	$ph="9535319779";
+	$ph="9844059885";
 	$site_name="Venus county";
 } else{
-	$ph="9449433684";
+	$ph="9844059885";
 	$media=$DOMAIN;
 	$site_name="Madhumitra Estates";
 } ?>
