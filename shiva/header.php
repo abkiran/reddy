@@ -38,17 +38,13 @@ if ( $_SERVER['HTTP_HOST'] != 'localhost' ){ ?>
   ga('create', 'UA-66093530-<?php echo $DOMAIN=='venuscounty.co.in'?'2':''; ?>', 'auto');
   ga('send', 'pageview');
 
-  
-  //chat
-  var LHCChatOptions = {};
-LHCChatOptions.opt = {widget_height:340,widget_width:300,popup_height:520,popup_width:500,domain:'kirankr.com'};
-(function() {
-var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-var referrer = (document.referrer) ? encodeURIComponent(document.referrer.substr(document.referrer.indexOf('://')+1)) : '';
-var location  = (document.location) ? encodeURIComponent(window.location.href.substring(window.location.protocol.length)) : '';
-po.src = '//kirankr.com/chat/index.php/chat/getstatus/(click)/internal/(position)/bottom_right/(ma)/br/(check_operator_messages)/true/(top)/350/(units)/pixels/(leaveamessage)/true/(disable_pro_active)/true/(noresponse)/true?r='+referrer+'&l='+location;
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
+   //chat
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+$.src="https://v2.zopim.com/?5KIluR7JGGnxJODo9yU9Sg6z2m4iV3ml";z.t=+new Date;$.
+type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+	
 <?php } ?>
 </script>
 
